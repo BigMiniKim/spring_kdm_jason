@@ -1,19 +1,13 @@
 package edu.kosmo.ex;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.kosmo.ex.vo.SampleVO;
 import lombok.extern.log4j.Log4j;
 
 
@@ -33,5 +27,25 @@ public class SampleController {
 		return "안녕! 또 만났군~";
 	}
 	
-	
+	@GetMapping(value = "/getSample")
+	public SampleVO getSample() {
+		return new SampleVO(113, "로켓", "라쿤");
+	}
+
+	@GetMapping(value = "/check", params = { "height", "weight" })
+	public ResponseEntity<SampleVO> check(Double height, Double weight) {
+
+		SampleVO vo = new SampleVO(0, "" + height, "" + weight);
+
+		ResponseEntity<SampleVO> result = null;
+
+		if (height < 150) {
+			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(vo);
+		} else {
+			result = ResponseEntity.status(HttpStatus.OK).body(vo);
+		}
+
+		return result;
+	}
+
 }
