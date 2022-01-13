@@ -21,6 +21,7 @@
             $.ajax({
                 type : "DELETE",
                 url : $(this).attr("href"),
+                // data:{"bId":"${content_view.bId}"}
                 success: function (result) {       
                 console.log(result); 
                   if(result == "SUCCESS"){

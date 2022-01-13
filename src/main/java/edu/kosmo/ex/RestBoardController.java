@@ -35,7 +35,7 @@ public class RestBoardController {
 	   }
 	   
 	  
-	   @DeleteMapping("/board/{bid}")  
+	   @DeleteMapping("/board/{bid}") 
 	   public ResponseEntity<String> rest_delete(BoardVO boardVO, Model model) {
 		      ResponseEntity<String> entity = null;
 		      log.info("rest_delete..");
