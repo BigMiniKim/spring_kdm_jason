@@ -57,7 +57,7 @@
             <td>${board.bname}</td>
             <td>
                <c:forEach begin="1" end="${board.bindent}">-</c:forEach>
-               <a href="content_view?bid=${board.bid}">${board.btitle}</a></td>
+               <a href="${pageContext.request.contextPath}/rest/board/${board.bid}">${board.btitle}</a></td>
             <td>${board.bdate}</td>
             <td>${board.bhit}</td>
             <td><a class="a-delete" data-bid='${board.bid}' href="${pageContext.request.contextPath}/rest/board/${board.bid}">삭제</a></td>
